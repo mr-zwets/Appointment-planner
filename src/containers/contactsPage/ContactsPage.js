@@ -1,31 +1,25 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {TileList} from '../../components/tileList/TileList.js'
 
 export const ContactsPage = (props) => {
-  /*
-  Define state variables for 
-  contact info and duplicate check
-  */
-  const [contact , setContact ] =useState({name:'',phoneNr:'',email:''})
+  
+  // State variable contact info
+  const [newContact , setNewContact ] =useState({name:'',phoneNr:'',email:''})
+  const [isNameUnique , setIsNameUnique ] =useState(true)
   
   const handleInputChange = (e) => {
-    setContact({
-      ...contact,
+    setNewContact({
+      ...newContact,
       [e.target.name]:e.target.value
     })
   }
 
-  let succes=true;
+  // Clears form and adds new contact to list on submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    /*
-    Add contact info and clear data
-    if the contact name is not a duplicate
-    */
-   console.log("a")
-    if(succes){
-      console.log("B")
-      props.addContact({contact})
-      setContact({
+    if(isNameUnique){
+      props.addContact(newContact)
+      setNewContact({
         name:'',
         phoneNr:'',
         email:''
@@ -33,10 +27,10 @@ export const ContactsPage = (props) => {
     }
   };
 
-  /*
-  Using hooks, check for contact name in the 
-  contacts array variable in props
-  */
+  // Check if the new contact's name is unique
+  useEffect(()=>{
+   props.contacts.find(contact =>contact.name==newContact.name)|| ''==newContact.name? setIsNameUnique(false):setIsNameUnique(true)
+  })
 
   return (
     <div>
@@ -44,11 +38,11 @@ export const ContactsPage = (props) => {
         <h2>Add Contact</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name:</label><br/>
-          <input type="text" value={contact.name} onChange={handleInputChange} id="name" name="name"/><br/>
+          <input type="text" value={newContact.name} onChange={handleInputChange} id="name" name="name"/><br/>
           <label htmlFor="phoneNr">Phone number:</label><br/>
-          <input type="text" value={contact.phoneNr} onChange={handleInputChange} id="phoneNr" name="phoneNr"/><br/>
+          <input type="number" value={newContact.phoneNr} onChange={handleInputChange} id="phoneNr" name="phoneNr"/><br/>
           <label htmlFor="email">Email:</label><br/>
-          <input type="text" value={contact.email} onChange={handleInputChange} id="email" name="email"/><br/>
+          <input type="text" value={newContact.email} onChange={handleInputChange} id="email" name="email"/><br/>
 
           <input type="submit" value="Submit"/>
         </form>
@@ -56,6 +50,7 @@ export const ContactsPage = (props) => {
       <hr />
       <section>
         <h2>Contacts</h2>
+        <TileList contacts={props.contacts} />
       </section>
     </div>
   );

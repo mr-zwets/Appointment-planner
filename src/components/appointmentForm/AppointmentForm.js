@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import {ContactPicker} from '../contactPicker/ContactPicker.js';
 
 export const AppointmentForm = (props) => {
   
@@ -27,13 +28,13 @@ export const AppointmentForm = (props) => {
           <input type="text" value={newAppointment.title} onChange={handleInputChange} id="title"/><br/>
 
           <label htmlFor="contact">Contact:</label><br/>
-          <input type="text" value={newAppointment.contact} onChange={handleInputChange} id="contact"/><br/>
+          <ContactPicker contacts={props.contacts} handleInputChange={handleInputChange} id="contact"/>
 
           <label htmlFor="date">Date:</label><br/>
           <input type="date" value={newAppointment.date} onChange={handleInputChange} id="date"/><br/>
 
           <label htmlFor="time">Time:</label><br/>
-          <input type="text" value={newAppointment.time} onChange={handleInputChange} id="time"/><br/>
+          <input type="time" value={newAppointment.time} onChange={handleInputChange} id="time"/><br/>
 
           <input type="submit" value="Submit"/>
         </form>

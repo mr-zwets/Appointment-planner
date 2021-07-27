@@ -22,13 +22,8 @@ function App() {
   }
 
   // Function to add data to appointments
-  const addAppointment = (title,contact,date,time) => {
-    setAppointments(...appointments,{
-      title:title,
-      contact:contact,
-      date:date,
-      time:time
-    })
+  const addAppointment = (appointment) => {
+    setAppointments([...appointments,appointment])
   }
 
 
@@ -56,6 +51,7 @@ function App() {
           <Route path={ROUTES.APPOINTMENTS}>
             <AppointmentsPage 
               appointments={appointments}
+              contacts={contacts}
               addAppointment={addAppointment}
             />
           </Route>

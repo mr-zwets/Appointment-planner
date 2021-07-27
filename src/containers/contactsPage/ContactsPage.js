@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import {TileList} from '../../components/tileList/TileList.js'
+import {ContactForm} from '../../components/contactForm/ContactForm.js';
+import {TileList} from '../../components/tileList/TileList.js';
 
 export const ContactsPage = (props) => {
   
@@ -33,16 +34,7 @@ export const ContactsPage = (props) => {
     <div>
       <section>
         <h2>Add Contact</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label><br/>
-          <input type="text" value={newContact.name} onChange={handleInputChange} id="name"/><br/>
-          <label htmlFor="phoneNr">Phone number:</label><br/>
-          <input type="number" value={newContact.phoneNr} onChange={handleInputChange} id="phoneNr"/><br/>
-          <label htmlFor="email">Email:</label><br/>
-          <input type="text" value={newContact.email} onChange={handleInputChange} id="email"/><br/>
-
-          <input type="submit" value="Submit"/>
-        </form>
+        <ContactForm newContact={newContact} handleInputChange={handleInputChange} handleSubmit={handleSubmit} />
       </section>
       <hr />
       <section>

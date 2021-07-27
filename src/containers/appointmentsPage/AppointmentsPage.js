@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import {TileList} from '../../components/tileList/TileList.js'
+import {AppointmentForm} from '../../components/appointmentForm/AppointmentForm.js';
+import {TileList} from '../../components/tileList/TileList.js';
 
 export const AppointmentsPage = (props) => {
 // State variables new appointment
@@ -32,18 +33,7 @@ export const AppointmentsPage = (props) => {
     <div>
       <section>
         <h2>Add Appointment</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="title">Title:</label><br/>
-          <input type="text" value={newAppointment.title} onChange={handleInputChange} id="title"/><br/>
-          <label htmlFor="contact">Contact:</label><br/>
-          <input type="text" value={newAppointment.contact} onChange={handleInputChange} id="contact"/><br/>
-          <label htmlFor="date">Date:</label><br/>
-          <input type="text" value={newAppointment.date} onChange={handleInputChange} id="date"/><br/>
-          <label htmlFor="time">Time:</label><br/>
-          <input type="text" value={newAppointment.time} onChange={handleInputChange} id="time"/><br/>
-
-          <input type="submit" value="Submit"/>
-        </form>
+        <AppointmentForm newAppointment={newAppointment} setNewAppointment={setNewAppointment} handleInputChange={handleInputChange} handleSubmit={handleSubmit}/>
       </section>
       <hr />
       <section>

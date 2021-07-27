@@ -4,7 +4,7 @@ import {Tile} from '../tile/Tile.js'
 export const TileList = (props) => {
   return (
     <div>
-      {props.contacts.map(contact => (<Tile info={contact} key={contact.name} />))}
+      {props.list.map(item => (<Tile info={item} key={'name' in item?item.name:item.title } />))}
     </div>
   );
 };

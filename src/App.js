@@ -30,6 +30,7 @@ function App() {
   return (
     <>
       <nav>
+        <h1>Appointment planner</h1>
         <NavLink to={ROUTES.CONTACTS} activeClassName="active">
           Contacts
         </NavLink>

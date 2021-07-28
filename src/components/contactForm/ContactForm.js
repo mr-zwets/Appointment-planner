@@ -5,10 +5,11 @@ export const ContactForm = (props) => {
   const handleInputChange= (e) => props.handleInputChange(e)
   const handleSubmit= (e) => props.handleSubmit(e)
   const newContact= props.newContact
+  const isNameUnique=props.isNameUnique
 
   return (
     <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label><br/>
+          <label htmlFor="name">Name: {isNameUnique? '':' (must be unique)'}</label><br/>
           <input type="text" value={newContact.name} onChange={handleInputChange} id="name"/><br/>
 
           <label htmlFor="phoneNr">Phone number:</label><br/>
@@ -18,7 +19,7 @@ export const ContactForm = (props) => {
           <label htmlFor="email">Email:</label><br/>
           <input type="text" value={newContact.email} onChange={handleInputChange} id="email"/><br/>
 
-          <input type="submit" value="Submit"/>
+          <input type="submit" value="Add Contact"/>
         </form>
   );
 };

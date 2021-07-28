@@ -5,7 +5,7 @@ import {TileList} from '../../components/tileList/TileList.js';
 export const AppointmentsPage = (props) => {
 // State variables new appointment
   const [newAppointment , setNewAppointment ] =useState({title:'',contact:'',date:'',time:''})
-  const [isNameUnique , setIsNameUnique ] =useState(true)
+  const [isTitleUnique , setIsTitleUnique ] =useState(true)
   
   const handleInputChange = (e) => {
     setNewAppointment({
@@ -17,7 +17,7 @@ export const AppointmentsPage = (props) => {
   // Clears form and adds new appointment to list on submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(isNameUnique){
+    if(isTitleUnique){
       props.addAppointment(newAppointment)
       setNewAppointment({title:'',contact:'',date:'',time:''});
     }
@@ -26,7 +26,7 @@ export const AppointmentsPage = (props) => {
   // Check if the new contact's name is unique
   useEffect(()=>{
     props.appointments.find(appointment =>appointment.title==newAppointment.title)|| ''==newAppointment.title? 
-      setIsNameUnique(false):setIsNameUnique(true)
+    setIsTitleUnique(false):setIsTitleUnique(true)
    },[newAppointment])
 
   return (
@@ -34,7 +34,7 @@ export const AppointmentsPage = (props) => {
       <section>
         <h2>Add Appointment</h2>
         <AppointmentForm newAppointment={newAppointment} setNewAppointment={setNewAppointment} contacts={props.contacts}
-        handleInputChange={handleInputChange} handleSubmit={handleSubmit}/>
+        handleInputChange={handleInputChange} handleSubmit={handleSubmit} isTitleUnique={isTitleUnique} />
       </section>
       <hr />
       <section>

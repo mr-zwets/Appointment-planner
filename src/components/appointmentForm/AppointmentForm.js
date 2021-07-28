@@ -7,6 +7,7 @@ export const AppointmentForm = (props) => {
   const handleSubmit= (e) => props.handleSubmit(e)
   const newAppointment= props.newAppointment
   const setNewAppointment= props.setNewAppointment
+  const isTitleUnique= props.isTitleUnique
 
   const getTodayString = () => {
     const [month, day, year] = new Date()
@@ -24,7 +25,7 @@ export const AppointmentForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-          <label htmlFor="title">Title:</label><br/>
+          <label htmlFor="title">Title: {isTitleUnique? '':' (must be unique)'}</label><br/>
           <input type="text" value={newAppointment.title} onChange={handleInputChange} id="title"/><br/>
 
           <label htmlFor="contact">Contact:</label><br/>
@@ -36,7 +37,7 @@ export const AppointmentForm = (props) => {
           <label htmlFor="time">Time:</label><br/>
           <input type="time" value={newAppointment.time} onChange={handleInputChange} id="time"/><br/>
 
-          <input type="submit" value="Submit"/>
+          <input type="submit" value="Add Appointment"/>
         </form>
   );
 };
